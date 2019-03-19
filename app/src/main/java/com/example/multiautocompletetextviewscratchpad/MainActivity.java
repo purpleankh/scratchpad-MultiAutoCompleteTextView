@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Buggy layout
         setContentView(R.layout.activity_main);
+        // Bodged layout
+//        setContentView(R.layout.activity_main_bodge);
 
         editText = findViewById(R.id.mactv);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
