@@ -8,7 +8,14 @@
     tools:context="com.example.multiautocompletetextviewscratchpad.MainActivity">
 
     <com.example.multiautocompletetextviewscratchpad.MyMultiAutoCompleteTextView
-        android:id="@+id/mactv"
+        android:id="@+id/mactv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:completionThreshold="1"
+        android:hint="Select countries" />
+
+    <com.example.multiautocompletetextviewscratchpad.MyMultiAutoCompleteTextView
+        android:id="@+id/mactv2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:completionThreshold="1"

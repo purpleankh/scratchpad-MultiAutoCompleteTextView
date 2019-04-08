@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String[] COUNTRIES;
 
-    private MultiAutoCompleteTextView editText;
+    private MultiAutoCompleteTextView editText1;
+    private MultiAutoCompleteTextView editText2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +47,34 @@ public class MainActivity extends AppCompatActivity {
         // Bodged layout
 //        setContentView(R.layout.activity_main_bodge);
 
-        editText = findViewById(R.id.mactv);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, COUNTRIES);
-        editText.setAdapter(adapter);
-        editText.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+        editText1 = findViewById(R.id.mactv1);
+        editText1.setAdapter(adapter);
+        editText1.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
         // Set a simple 'everything-is-valid' validator
-        editText.setValidator(new AutoCompleteTextView.Validator() {
+        editText1.setValidator(new AutoCompleteTextView.Validator() {
+            @Override
+            public boolean isValid(CharSequence text) {
+                Log.d(TAG, "isValid() called with: text = [" + text + "]");
+                // Everything is valid
+                return true;
+            }
+
+            @Override
+            public CharSequence fixText(CharSequence invalidText) {
+                Log.d(TAG, "fixText() called with: invalidText = [" + invalidText + "]");
+                return invalidText;
+            }
+        });
+        editText2 = findViewById(R.id.mactv2);
+        editText2.setAdapter(adapter);
+        editText2.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+        // Set a simple 'everything-is-valid' validator
+        editText2.setValidator(new AutoCompleteTextView.Validator() {
             @Override
             public boolean isValid(CharSequence text) {
                 Log.d(TAG, "isValid() called with: text = [" + text + "]");
@@ -70,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showInput(View v) {
-        String input = editText.getText().toString().trim();
+        String input = editText1.getText().toString().trim();
         String[] singleInputs = input.split("\\s*,\\s*");
 
         StringBuilder toastText = new StringBuilder();
